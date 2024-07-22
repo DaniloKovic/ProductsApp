@@ -1,0 +1,93 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "ProductDBContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": true,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "DB\/Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "ProductsApp",
+   "Schemas": [
+      {
+         "Name": "Server=localhost;Database=ProductDB;User=root;Password=root;"
+      }
+   ],
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "__efmigrationshistory",
+         "ObjectType": 0
+      },
+      {
+         "Name": "category",
+         "ObjectType": 0
+      },
+      {
+         "Name": "order",
+         "ObjectType": 0
+      },
+      {
+         "Name": "orderitem",
+         "ObjectType": 0
+      },
+      {
+         "Name": "product",
+         "ObjectType": 0
+      },
+      {
+         "Name": "roleclaims",
+         "ObjectType": 0
+      },
+      {
+         "Name": "roles",
+         "ObjectType": 0
+      },
+      {
+         "Name": "userclaims",
+         "ObjectType": 0
+      },
+      {
+         "Name": "userlogins",
+         "ObjectType": 0
+      },
+      {
+         "Name": "userroles",
+         "ObjectType": 0
+      },
+      {
+         "Name": "users",
+         "ObjectType": 0
+      },
+      {
+         "Name": "usertokens",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "ProductDB",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductsApp.DB;
+using ProductsApp.DB.Models;
 using ProductsApp.Services;
 
 namespace ProductsApp.Controllers
@@ -17,6 +18,13 @@ namespace ProductsApp.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetProducts()
+        {
+            var products = await _productService.GetProductsAsync();
+            return Ok(products);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
@@ -27,11 +35,18 @@ namespace ProductsApp.Controllers
             return Ok(product);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        [HttpGet("Product/{name}")]
+        public async Task<IActionResult> GetProductsByName(string productName)
         {
-            var products = await _productService.GetProductsAsync();
-            return Ok(products);
+            if (string.IsNullOrEmpty(productName)) {
+                return BadRequest();
+            }
+
+            var result = await _productService.GetProductByName(productName);
+            if (result is null) {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         [HttpPost]
@@ -44,7 +59,7 @@ namespace ProductsApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
         {
-            var existingProduct = await _productService.GetProductByIdAsync(id);
+            Product? existingProduct = await _productService.GetProductByIdAsync(id);
             if (existingProduct == null)
             {
                 return NotFound();

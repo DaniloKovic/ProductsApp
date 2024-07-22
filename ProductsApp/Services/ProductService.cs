@@ -1,17 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductsApp.DB;
+using ProductsApp.DB.Models;
+using ProductsApp.Model.Response;
 
 namespace ProductsApp.Services
 {
     public class ProductService
     {
-        private readonly ProductDbContext _dbContext;
+        private readonly ProductDBContext _dbContext;
         private readonly RedisCacheService _redisCacheService;
 
-        public ProductService(ProductDbContext dbContext, RedisCacheService redisCacheService)
+        public ProductService(ProductDBContext dbContext, RedisCacheService redisCacheService)
         {
             _dbContext = dbContext;
             _redisCacheService = redisCacheService;
+        }
+
+        public async Task<List<ProductResponse>> GetProductsAsync()
+        {
+            return await _dbContext.Products
+                                   .Select(el => new ProductResponse()
+                                   {
+                                       Id = el.Id,
+                                       Name = el.Name,
+                                       CategoryId = el.CategoryId,
+                                       CategoryName = el.Category.Name
+                                   })
+                                   .ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
@@ -30,9 +44,9 @@ namespace ProductsApp.Services
             return product;
         }
 
-        public async Task<List<Product>> GetProductsAsync()
+        public async Task<List<Product>> GetProductByName(string productName)
         {
-            return await _dbContext.Products.ToListAsync();
+            return await _dbContext.Products.Where(el => el.Name.Contains(productName)).ToListAsync();
         }
 
         public async Task AddProductAsync(Product product)
